@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <ul>
       <li>可乐2</li>
-      <li>雪碧2</li>
+      <li>雪碧234</li>
       <li>七喜2</li>
     </ul>
   </div>
@@ -15,12 +15,14 @@ export default {
   name: 'hello2',
   data () {
     return {
-      msg: '饮料列表2'
+      msg: '88888饮料列表299999'
     }
   }
 }
 
 </script>
+
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

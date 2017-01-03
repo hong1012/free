@@ -15,7 +15,7 @@ export default {
   name: 'hello2',
   data () {
     return {
-      msg: '88888饮料列表299999'
+      msg: '饮料列表'
     }
   }
 }

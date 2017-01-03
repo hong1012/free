@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'hello5555',
   data () {
     return {
       msg: '饮料列表33333'

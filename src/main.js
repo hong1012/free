@@ -12,6 +12,7 @@ import AppMenu from './Menu'
 
 import Hello from './components/Hello.vue'
 import Hello2 from './components/Hello2.vue'
+import FreeBillManager from './components/FreeBillManager.vue'
 
 /* eslint-disable no-new */
 
@@ -23,29 +24,17 @@ Vue.use(VueRouter)
 Vue.use(ElementUI)
 
 
-const Home = { template: '<div>home</div>' }
-
 
 
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', component: Hello },
+    { path: '/', component: FreeBillManager },
     { path: '/hello', component: Hello },
     { path: '/hello2', component: Hello2 }
   ]
 })
-
-
-
-/*
-
-new Vue({
-    el: '#app',
-    render: h => h(App)
-})
-*/
 
 
 new Vue({
@@ -55,6 +44,8 @@ new Vue({
     AppMenu
   }
 }).$mount('#app')
+
+
 /*
 new Vue({
   router,

@@ -5,18 +5,18 @@
     {{ message }}
 
     <button v-on:click.once=greet>增加 1</button>
-    <p>这个按钮被点击了 {{ counter }} 次。</p>
+    <p v-if="counter%2==0">这个按钮被点击了 {{ counter }} 次。</p>
 
     <ul>
       <liCmp v-for="(item2,index) of items"
              v-bind:class="item2.cname"
-
+             v-bind:id="item2.id"
       ></liCmp>
 
     </ul>
 
     <ul>
-      <li v-for="(item,index) of items" v-on:click.once=beclick
+      <li  v-for="(item,index) of items" v-on:click.once=beclick
           v-bind:class="item.id % 2==0 ?'lired':'ligreen' "
       >
         {{ index+item.message+'*'+item.id }}
@@ -47,7 +47,8 @@
 <script>
 
   var liCmp = {
-    template: '<li>A  component!</li>'
+    props: ['id'],
+    template: '<li>A  component! my id is {{id}}</li>'
   }
 
 

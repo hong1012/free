@@ -1,19 +1,18 @@
 <template>
-  <div class="csstest">
-    <hello></hello>
-    <hello2></hello2>
-    <hello></hello>
+  <div >
+     <AppMenu></AppMenu>
   </div>
 </template>
 
 
 <script>
-import Hello from './components/Hello'
-import Hello2 from './components/Hello2'
+
+import AppMenu from './Menu.vue'
+
 
 export default {
   components: {
-    Hello,  Hello2
+    AppMenu
   }
 }
 </script>

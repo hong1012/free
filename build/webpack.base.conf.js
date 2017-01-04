@@ -48,6 +48,11 @@ module.exports = {
         test: /\.json$/,
         loader: 'json'
       },
+      /*hong add */
+      {
+        test: /\.less$/,
+        loader: 'style!css!less'
+      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url',

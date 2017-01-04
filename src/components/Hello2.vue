@@ -2,9 +2,9 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <ul>
-      <li>可乐2</li>
-      <li>雪碧234</li>
-      <li>七喜2</li>
+      <li>可乐</li>
+      <li>雪碧</li>
+      <li>七喜</li>
     </ul>
   </div>
 </template>

@@ -3,12 +3,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
 
 import App from './App'
-import AppMenu from './Menu'
-
+import Test from './Test/Test'
+import Test2 from './Test/Test2'
 
 import Hello from './components/Hello.vue'
 import Hello2 from './components/Hello2.vue'
@@ -18,13 +16,10 @@ import Hello2 from './components/Hello2.vue'
 
 
 
-Vue.use(VueRouter)
-
-Vue.use(ElementUI)
+Vue.use(VueRouter);
 
 
 const Home = { template: '<div>home</div>' }
-
 
 
 const router = new VueRouter({
@@ -38,25 +33,7 @@ const router = new VueRouter({
 })
 
 
-
-/*
-
-new Vue({
-    el: '#app',
-    render: h => h(App)
-})
-*/
-
-
-new Vue({
-  router,
-  template: `<AppMenu></AppMenu>`,
-  components: {
-    AppMenu
-  }
-}).$mount('#app')
-/*
-new Vue({
+/*new Vue({
   router,
   template: `
     <div id="app">
@@ -69,6 +46,20 @@ new Vue({
     </div>
   `
 }).$mount('#app')*/
+
+new Vue({
+  router,
+  template: `
+    <div id="app">
+      <ul>
+        <li><router-link to="/">/</router-link></li>
+        <li><router-link to="/hello">/hello</router-link></li>
+        <li><router-link to="/hello2">/hello2</router-link></li>
+      </ul>
+      <router-view class="view"></router-view>
+    </div>
+  `
+}).$mount('#app')
 
 
 

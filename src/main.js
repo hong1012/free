@@ -12,7 +12,12 @@ import AppMenu from './Menu'
 
 import Hello from './components/Hello.vue'
 import Hello2 from './components/Hello2.vue'
+
 import FreeBillManager from './components/FreeBillManager.vue'
+import CostDefine from './components/CostDefine.vue'
+import CostPay from './components/CostPay.vue'
+import CostForm from './components/CostForm.vue'
+import FreeBillProgress from './components/FreeBillProgress.vue'
 
 /* eslint-disable no-new */
 
@@ -31,6 +36,11 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: FreeBillManager },
+    { path: '/manager', component: FreeBillManager },
+    { path: '/define', component: CostDefine },
+    { path: '/costpay', component: CostPay },
+    { path: '/costform', component: CostForm },
+    { path: '/progress', component: FreeBillProgress },
     { path: '/hello', component: Hello },
     { path: '/hello2', component: Hello2 }
   ]

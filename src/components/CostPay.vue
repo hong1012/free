@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <div>费用支出</div>
   <el-table
     :data="tableData3"
     border
@@ -24,6 +26,7 @@
       show-overflow-tooltip>
     </el-table-column>
   </el-table>
+  </div>
 </template>
 
 <script>

@@ -7,12 +7,14 @@
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-menu"></i>统计报表</template>
         <el-menu-item index="11">
-          <router-link  v-bind:style="alink" to="/hello">费用支出统计</router-link></el-menu-item>
-        <el-menu-item index="12">费用构成分析</el-menu-item>
-        <el-menu-item index="13">报销进度分析</el-menu-item>
+          <router-link  v-bind:style="alink" to="/costpay">费用支出统计</router-link></el-menu-item>
+        <el-menu-item index="12">
+          <router-link  v-bind:style="alink" to="/costform">费用构成分析</router-link></el-menu-item>
+        <el-menu-item index="13">
+          <router-link  v-bind:style="alink" to="/progress">报销进度分析</router-link></el-menu-item>
       </el-submenu>
       <el-menu-item index="2"><i class="el-icon-setting"></i>
-        <router-link v-bind:style="alink" to="/hello2">自定义费用类型</router-link></el-menu-item>
+        <router-link v-bind:style="alink" to="/define">自定义费用类型</router-link></el-menu-item>
     </el-menu>
   </div>
   <router-view class="content"></router-view>

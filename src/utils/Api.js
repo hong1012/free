@@ -3,7 +3,7 @@
  */
 
 
-const baseUrl = 'http://localhost:8080/thirdapi/'
+const baseUrl = 'http://localhost:8088/thirdapi/'
 //const baseUrl='http://ebx.youshang.com/thirdapi/'
 
 function get(caller) {
@@ -41,7 +41,8 @@ function deal(xhr, caller) {
         caller.fnDone && caller.fnDone();
         if (xhr.status == 200) {
             var data = xhr.responseText;
-            var json = (new Function('return ' + data))();
+            //var json = (new Function('return ' + data))();
+            var json = JSON.parse(data);
             if (json.status == 200) {
                 caller.fnSuccess && caller.fnSuccess(json.data);
             } else {
@@ -64,7 +65,8 @@ function getmob(caller) {
             caller.fnDone && caller.fnDone();
             if (xhr.status == 200) {
                 var data = xhr.responseText;
-                var json = (new Function('return ' + data))();
+                //var json = (new Function('return ' + data))();
+                var json = JSON.parse(data);
                 if (json.code == 200) {
                     caller.fnSuccess && caller.fnSuccess(json.data);
                 } else {

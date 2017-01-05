@@ -6,7 +6,7 @@
 import  Api from './utils/Api'
 
 
-const baseUrl = 'http://localhost:8080/'
+const baseUrl = 'http://localhost:8088/'
 //const baseUrl='http://ebx.youshang.com/'
 
 let eid=4016572

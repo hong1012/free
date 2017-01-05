@@ -18,26 +18,31 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    port: 8088,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/thirdapi': {
+        target: 'http://ebx.youshang.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/thirdapi': '/thirdapi'
+        }
+      },
+      '/api': {
+        target: 'http://ebx.youshang.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/api'
+        }
+      }
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     //其实很简单的，只要配置这个参数就可以了
-    proxy: {
-      '/thirdapi/*': {
-        target: 'http://ebx.youshang.com/',
-        secure: false
-      },
-      '/api/*': {
-        target: 'http://ebx.youshang.com/',
-        secure: false
-      }
-    },
     cssSourceMap: false
   }
 }

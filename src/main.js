@@ -58,9 +58,9 @@ function showApp() {
   }).$mount('#app')
 }
 
-showApp();
+//showApp();
 
-//AppData.initApp(showApp);
+AppData.initApp(showApp);
 
 /*
 new Vue({

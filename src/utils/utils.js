@@ -12,7 +12,15 @@ function connect(src,target) {
 }
 
 
+function empty(src) {
+  while(src.length>0){
+    src.pop();
+  }
+  return src;
+}
+
+
 
 export default {
-  connect
+  connect,empty
 }

@@ -56,10 +56,8 @@
       <el-table-column prop="payTime" label="付款时间"  width="180"></el-table-column>
 
     </el-table>
-    <el-pagination
-      layout="prev, pager, next"
-      :total="datanum">
-    </el-pagination>
+    <el-pagination style="float: right;margin-right: -5px;"
+                   layout="prev, pager, next" :total="datanum"></el-pagination>
   </div>
 
 </template>
@@ -167,6 +165,7 @@
       }
     },
     mounted:function () {
+      tbData=Utils.empty(tbData);
       getData();
     }
   }

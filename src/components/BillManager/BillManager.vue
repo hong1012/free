@@ -63,9 +63,24 @@
     </el-table>
     <el-pagination style="float: right;margin-right: -5px;"
                    layout="prev, pager, next" :total="datanum"></el-pagination>
-    <div class="">
-      <BillView></BillView>
+
+    <div v-if="cview === 'BillView'">
+      <div class="subview">
+        <BillView v-on:closeSubview="closeSubview"  :id="curid"></BillView>
+      </div>
     </div>
+    <div v-else-if="cview === 'BillCheck'">
+      <div class="subview">
+        <BillCheck v-on:closeSubview="closeSubview"   :id="curid"></BillCheck>
+      </div>
+    </div>
+    <div v-else-if="cview === 'BillPay'">
+      <div class="subview">
+        <BillPay v-on:closeSubview="closeSubview"   :id="curid"></BillPay>
+      </div>
+    </div>
+
+
   </div>
 
 </template>
@@ -79,6 +94,8 @@
   import Utils from '../../utils/utils'
 
   import BillView from './BillView'
+  import BillCheck from './BillCheck'
+  import BillPay from './BillPay'
 
 
   let deptlist = [{
@@ -149,7 +166,7 @@
 
   export default {
     components: {
-      BillView
+      BillView, BillCheck, BillPay
     },
     data: function () {
       return {
@@ -164,6 +181,9 @@
         status: '',
         keyword: '',
 
+        cview: '',
+        curid: '',
+
         datanum: 28,
 
         tbData: tbData,
@@ -175,22 +195,28 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
-      handleClick: function (scope) {
-        alert(scope.row.statusCode);
+      handleClick(scope) {
+        this.curid = scope.row.id;
+        var btn = getTitle(scope.row);
+        switch (btn) {
+          case '':
+            this.cview = '';
+            break;
+          case '审核':
+            this.cview = 'BillCheck';
+            break;
+          case '查看':
+            this.cview = 'BillView';
+            break;
+          case '支付':
+            this.cview = 'BillPay';
+            break;
+        }
         //console.dir(scope.row);
       },
-      getOptTitle: function (text) {
-        let btn = '状态不明确';
-        if (text.statusCode == 'pass' || text.statusCode == 'submit') {
-          btn = '审核';
-        }
-        else if (text.statusCode == 'checked') {
-          btn = '支付';
-        }
-        else if (text.statusCode == 'pay') {
-          btn = '查看';
-        }
-        return btn;
+      getOptTitle: getTitle,
+      closeSubview: function (subview) {
+        this.cview = subview;
       }
     },
 
@@ -199,6 +225,23 @@
       getData();
     }
   }
+
+  function getTitle(row) {
+
+    let btn = '';
+    if (row.statusCode == 'pass' || row.statusCode == 'submit') {
+      btn = '审核';
+    }
+    else if (row.statusCode == 'checked') {
+      btn = '支付';
+    }
+    else if (row.statusCode == 'pay') {
+      btn = '查看';
+    }
+    return btn;
+
+  }
+
 </script>
 
 <style lang="less" scoped>
@@ -206,6 +249,17 @@
   .head {
     padding: 10px;
     margin: 10px;
+  }
+
+  .subview {
+
+    position: absolute;
+    top: 0;
+    left: 180px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #ffffff;
   }
 
 </style>

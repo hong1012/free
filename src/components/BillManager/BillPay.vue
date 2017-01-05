@@ -1,8 +1,7 @@
 <template>
-
   <div>
     <div>
-      查看视图 单据编号: {{id}}
+      支付视图 单据编号: {{id}}
     </div>
     <el-button @click="close">关闭</el-button>
   </div>
@@ -21,7 +20,7 @@
 
     methods: {
       close: function () {
-        this.$emit('closeSubview', '参数');
+        this.$emit('closeSubview');
       }
 
 

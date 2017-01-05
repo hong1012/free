@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>费用自定义</div>
-    <div id="mychart"  style="height: 300px">
+    <div id="mychart" style="height: 300px">
 
     </div>
 
@@ -62,16 +62,14 @@
 
   export default {
 
-    data:function() {
+    data: function () {
       return {
-          a:1
+        a: 1
       }
     },
 
-    methods: {
-
-    },
-    mounted:function () {
+    methods: {},
+    mounted: function () {
       initChart();
     }
 

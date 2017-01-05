@@ -19,35 +19,35 @@
 
 <script>
 
-import Hell from '../components/Hello.vue'
+  import Hell from '../components/Hello.vue'
 
-export default {
+  export default {
 
-  data:function () {
-    return {
-      'message':'hello ',
-      items: [
-        {message: 'Foo' },
-        {message: 'Bar' }
-      ]
+    data: function () {
+      return {
+        'message': 'hello ',
+        items: [
+          {message: 'Foo'},
+          {message: 'Bar'}
+        ]
+      }
+    },
+    components: {
+      Hell
     }
-  },
-  components: {
-    Hell
   }
-}
 </script>
 
 <style scoped>
 
-.test {
+  .test {
 
-  color: #2c3e50;
-  margin-top: 60px;
-  background: red;
-}
+    color: #2c3e50;
+    margin-top: 60px;
+    background: red;
+  }
 
-  ul{
+  ul {
     list-style: none;
 
   }

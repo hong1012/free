@@ -23,27 +23,23 @@ import BillProgress from './components/BillProgress.vue'
 /* eslint-disable no-new */
 
 
-
-
 Vue.use(VueRouter)
 
 Vue.use(ElementUI)
-
-
 
 
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', component: BillManager },
-    { path: '/manager', component: BillManager },
-    { path: '/define', component: CostDefine },
-    { path: '/costpay', component: CostPay },
-    { path: '/costform', component: CostForm },
-    { path: '/progress', component: BillProgress },
-    { path: '/hello', component: Hello },
-    { path: '/hello2', component: Hello2 }
+    {path: '/', component: BillManager},
+    {path: '/manager', component: BillManager},
+    {path: '/define', component: CostDefine},
+    {path: '/costpay', component: CostPay},
+    {path: '/costform', component: CostForm},
+    {path: '/progress', component: BillProgress},
+    {path: '/hello', component: Hello},
+    {path: '/hello2', component: Hello2}
   ]
 })
 
@@ -63,29 +59,29 @@ function showApp() {
 AppData.initApp(showApp);
 
 /*
-new Vue({
-  router,
-  template: `
-    <div id="app">
-      <ul>
-        <li><router-link to="/">/</router-link></li>
-        <li><router-link to="/hello">/hello</router-link></li>
-        <li><router-link to="/hello2">/hello2</router-link></li>
-      </ul>
-      <router-view class="view"></router-view>
-    </div>
-  `
-}).$mount('#app')*/
+ new Vue({
+ router,
+ template: `
+ <div id="app">
+ <ul>
+ <li><router-link to="/">/</router-link></li>
+ <li><router-link to="/hello">/hello</router-link></li>
+ <li><router-link to="/hello2">/hello2</router-link></li>
+ </ul>
+ <router-view class="view"></router-view>
+ </div>
+ `
+ }).$mount('#app')*/
 
 
 
 /*
-new Vue({
-  el: '#apptest',
-  template: ' <Test2></Test2>',
-  components: { Test2 }
-})
-*/
+ new Vue({
+ el: '#apptest',
+ template: ' <Test2></Test2>',
+ components: { Test2 }
+ })
+ */
 
 
 

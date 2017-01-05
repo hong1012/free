@@ -1,11 +1,20 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <ul>
-      <li>hehe</li>
-      <li>haha</li>
-      <li>heihei</li>
-    </ul>
+    <div v-if="cview === 'BillView'">
+      <div class="subview">
+        <BillView v-on:closeSubview="closeSubview"  :id="curid"></BillView>
+      </div>
+    </div>
+    <div v-else-if="cview === 'BillCheck'">
+      <div class="subview">
+        <BillCheck v-on:closeSubview="closeSubview"   :id="curid"></BillCheck>
+      </div>
+    </div>
+    <div v-else-if="cview === 'BillPay'">
+      <div class="subview">
+        <BillPay v-on:closeSubview="closeSubview"   :id="curid"></BillPay>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -21,7 +21,7 @@
 
     methods: {
       close: function () {
-        this.$emit('closeSubview', '参数');
+        this.$emit('closeSubview', '');
       }
 
 

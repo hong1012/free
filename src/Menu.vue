@@ -7,13 +7,13 @@
         </el-menu-item>
         <el-submenu index="1">
           <template slot="title"><i class="el-icon-menu"></i>统计报表</template>
-          <el-menu-item index="11">
+          <el-menu-item index="0">
             <router-link v-bind:style="alink" to="/costpay">费用支出统计</router-link>
           </el-menu-item>
-          <el-menu-item index="12">
+          <el-menu-item index="1">
             <router-link v-bind:style="alink" to="/costform">费用构成分析</router-link>
           </el-menu-item>
-          <el-menu-item index="13">
+          <el-menu-item index="2">
             <router-link v-bind:style="alink" to="/progress">报销进度分析</router-link>
           </el-menu-item>
         </el-submenu>
@@ -22,10 +22,11 @@
         </el-menu-item>
       </el-menu>
     </div>
-    <router-view class="content"></router-view>
+    <keep-alive>
+       <router-view  class="content"></router-view>
+    </keep-alive>
   </div>
 </template>
-
 
 <script>
 

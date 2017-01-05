@@ -20,7 +20,7 @@
 
     methods: {
       close: function () {
-        this.$emit('closeSubview');
+        this.$emit('closeSubview', '');
       }
 
 

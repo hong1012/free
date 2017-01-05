@@ -64,21 +64,10 @@
     <el-pagination style="float: right;margin-right: -5px;"
                    layout="prev, pager, next" :total="datanum"></el-pagination>
 
-    <div v-if="cview === 'BillView'">
-      <div class="subview">
-        <BillView v-on:closeSubview="closeSubview"  :id="curid"></BillView>
+<!--    <div v-if="cview != '' " class="subview">
+      <div :is="cview" v-on:closeSubview="closeSubview" :id="curid">
       </div>
-    </div>
-    <div v-else-if="cview === 'BillCheck'">
-      <div class="subview">
-        <BillCheck v-on:closeSubview="closeSubview"   :id="curid"></BillCheck>
-      </div>
-    </div>
-    <div v-else-if="cview === 'BillPay'">
-      <div class="subview">
-        <BillPay v-on:closeSubview="closeSubview"   :id="curid"></BillPay>
-      </div>
-    </div>
+    </div>-->
 
 
   </div>

@@ -38,29 +38,23 @@
 
     </div>
     <el-table
-      :data="tableData3"
+      :data="tbData"
       border
       style="width: 100%"
       @selection-change="handleSelectionChange">
-      <el-table-column
-        type="selection"
-        width="55">
+      <el-table-column type="selection" width="55"></el-table-column>
+      <el-table-column label="日期" width="120">
+        <template scope="scope">{{ scope.row.time }}</template>
       </el-table-column>
-      <el-table-column
-        label="日期"
-        width="120">
-        <template scope="scope">{{ scope.row.date }}</template>
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址"
-        show-overflow-tooltip>
-      </el-table-column>
+      <el-table-column prop="name" label="报销人" width="100"></el-table-column>
+      <el-table-column prop="department" label="部门"  width="100"></el-table-column>
+      <el-table-column prop="type" label="类型"  width="120"></el-table-column>
+      <el-table-column prop="reason" label="事由" ></el-table-column>
+      <el-table-column prop="money" label="金额"  width="80"></el-table-column>
+      <el-table-column prop="id" label="单据编号"  width="120"></el-table-column>
+      <el-table-column prop="status" label="状态"  width="80"></el-table-column>
+      <el-table-column prop="payTime" label="付款时间"  width="180"></el-table-column>
+
     </el-table>
     <el-pagination
       layout="prev, pager, next"
@@ -70,7 +64,14 @@
 
 </template>
 
+
+
 <script>
+
+
+  import AppData from '../AppData'
+  import Api from '../utils/Api'
+  import Utils from '../utils/utils'
 
   let deptlist=[{
     value: '',
@@ -103,14 +104,24 @@
     label: '审核中'
   }];
 
+  let queryinfo = {
+    'department': '',
+    'others': '',
+    'status': '',
+    'type': 0
+  };
+
+  let tbData=[];
+
+
+
   function getData() {
 
-/*
     var param = {
       "startDate": "2001-01-01",
       "endDate": "2100-01-01",
       "type": queryinfo.type,
-      /!*    'department':queryinfo.department,*!/
+      /*    'department':queryinfo.department,*/
       'others': queryinfo.others,
       'status': queryinfo.status,
       "pager": {
@@ -124,10 +135,9 @@
       'url': 'doc/list?' + AppData.getData().author,
       'param': param,
       'fnSuccess': function (data) {
-
+        tbData=Utils.connect(tbData,data);
       }
     });
-    */
   }
 
   export default {
@@ -146,16 +156,7 @@
 
         datanum:28,
 
-
-        tableData3: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
+        tbData: tbData,
         multipleSelection: []
       }
     },
@@ -164,6 +165,9 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       }
+    },
+    mounted:function () {
+      getData();
     }
   }
 </script>

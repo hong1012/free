@@ -41,7 +41,6 @@ function deal(xhr, caller) {
         caller.fnDone && caller.fnDone();
         if (xhr.status == 200) {
             var data = xhr.responseText;
-            //var json = (new Function('return ' + data))();
             var json = JSON.parse(data);
             if (json.status == 200) {
                 caller.fnSuccess && caller.fnSuccess(json.data);
@@ -65,7 +64,6 @@ function getmob(caller) {
             caller.fnDone && caller.fnDone();
             if (xhr.status == 200) {
                 var data = xhr.responseText;
-                //var json = (new Function('return ' + data))();
                 var json = JSON.parse(data);
                 if (json.code == 200) {
                     caller.fnSuccess && caller.fnSuccess(json.data);

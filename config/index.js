@@ -27,6 +27,17 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
+    //其实很简单的，只要配置这个参数就可以了
+    proxy: {
+      '/thirdapi/*': {
+        target: 'http://ebx.youshang.com/',
+        secure: false
+      },
+      '/api/*': {
+        target: 'http://ebx.youshang.com/',
+        secure: false
+      }
+    },
     cssSourceMap: false
   }
 }

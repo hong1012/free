@@ -62,7 +62,10 @@
         show-overflow-tooltip>
       </el-table-column>
     </el-table>
-
+    <el-pagination
+      layout="prev, pager, next"
+      :total="datanum">
+    </el-pagination>
   </div>
 
 </template>
@@ -141,6 +144,7 @@
         status:'',
         keyword:'',
 
+        datanum:28,
 
 
         tableData3: [{

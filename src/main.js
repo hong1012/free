@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-default/index.css'
 
 import App from './App'
 import AppMenu from './Menu'
+import AppData from './AppData'
 
 
 import Hello from './components/Hello.vue'
@@ -47,14 +48,18 @@ const router = new VueRouter({
 })
 
 
-new Vue({
-  router,
-  template: `<AppMenu></AppMenu>`,
-  components: {
-    AppMenu
-  }
-}).$mount('#app')
+function showApp() {
+  new Vue({
+    router,
+    template: `<AppMenu></AppMenu>`,
+    components: {
+      AppMenu
+    }
+  }).$mount('#app')
+}
 
+
+AppData.initApp(showApp);
 
 /*
 new Vue({

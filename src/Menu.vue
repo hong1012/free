@@ -52,8 +52,6 @@ export default {
   .view{
     display: flex;
 
-
-
   .menu{
     width:180px;
     height: 1000px;
@@ -62,7 +60,6 @@ export default {
 
   .content{
     flex:1;
-    background: greenyellow;
   }
 
 

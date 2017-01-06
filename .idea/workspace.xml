@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0753590c-3210-4343-950c-85c75ed96b25" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/BillManager/BillManager.vue" afterPath="$PROJECT_DIR$/src/components/BillManager/BillManager.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/utils.js" afterPath="$PROJECT_DIR$/src/utils/utils.js" />
     </list>
     <ignored path="free.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +32,22 @@
       <file leaf-file-name="BillManager.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/BillManager/BillManager.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="212" column="22" selection-start-line="212" selection-start-column="22" selection-end-line="212" selection-end-column="22" />
+            <state relative-caret-position="154">
+              <caret line="162" column="18" selection-start-line="162" selection-start-column="18" selection-end-line="162" selection-end-column="18" />
               <folding>
-                <element signature="e#2611#2646#0" expanded="true" />
+                <element signature="n#template#0;n#!!top" expanded="false" />
+                <element signature="e#2629#2664#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="726">
+              <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,8 +114,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="93" />
-    <option name="y" value="156" />
+    <option name="x" value="170" />
+    <option name="y" value="147" />
     <option name="width" value="1638" />
     <option name="height" value="949" />
   </component>
@@ -373,7 +384,7 @@
       <workItem from="1483420086901" duration="1863000" />
       <workItem from="1483428082833" duration="12592000" />
       <workItem from="1483447848317" duration="2989000" />
-      <workItem from="1483500804260" duration="57767000" />
+      <workItem from="1483500804260" duration="61264000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1483067655581</created>
@@ -414,7 +425,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89804000" />
+    <option name="totallyTimeSpent" value="93301000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -426,7 +437,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="93" y="156" width="1638" height="949" extended-state="0" />
+    <frame x="170" y="147" width="1638" height="949" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20717378" sideWeight="0.4945355" order="0" side_tool="false" content_ui="tabs" />
@@ -764,14 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/FreeBillManager.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -854,12 +857,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/BillManager/BillManager.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="212" column="22" selection-start-line="212" selection-start-column="22" selection-end-line="212" selection-end-column="22" />
+        <state relative-caret-position="154">
+          <caret line="162" column="18" selection-start-line="162" selection-start-column="18" selection-end-line="162" selection-end-column="18" />
           <folding>
-            <element signature="e#2611#2646#0" expanded="true" />
+            <element signature="n#template#0;n#!!top" expanded="false" />
+            <element signature="e#2629#2664#0" expanded="true" />
           </folding>
         </state>
       </provider>

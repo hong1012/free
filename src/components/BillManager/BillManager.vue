@@ -3,7 +3,7 @@
     <div class="head">
 
       <span>部门</span>
-      <el-select v-model="dept" placeholder="请选择">
+      <el-select v-model="dept" placeholder="" @change="deptSelect">
         <el-option
           v-for="item in depts"
           :label="item.label"
@@ -89,11 +89,6 @@
   import BillPay from './BillPay'
 
 
-  let deptlist = [{
-    value: '',
-    label: '全部'
-  }];
-
   let typelist = [{
     value: '0',
     label: '全部'
@@ -120,12 +115,6 @@
     label: '审核中'
   }];
 
-  let queryinfo = {
-    'department': '',
-    'others': '',
-    'status': '',
-    'type': 0
-  };
 
 
   export default {
@@ -134,8 +123,8 @@
     },
     data: function () {
       return {
-        depts: deptlist,
-        dept: '',
+        depts: [{value: "-1",label: '全部'}],
+        dept: '-1',
         types: typelist,
         type: '0',
         statuss: statuslist,
@@ -156,17 +145,18 @@
     methods: {
 
       queryClick: function () {
-        queryinfo.others = this.keyword;
         this.searchData();
       },
 
-      statusSelect: function (text) {
-        queryinfo.status = text;
+      deptSelect: function () {
+        console.log('deptSelect:'+this.dept);
+        this.searchData();
+      },
+      statusSelect: function () {
         this.searchData();
       },
 
-      typeSelect: function (text) {
-        queryinfo.type = text;
+      typeSelect: function () {
         this.searchData();
       },
 
@@ -177,21 +167,12 @@
       handleClick: function (scope) {
         this.curid = scope.row.id;
         var btn = getTitle(scope.row);
-        switch (btn) {
-          case '':
-            this.cview = '';
-            break;
-          case '审核':
-            this.cview = 'BillCheck';
-            break;
-          case '查看':
-            this.cview = 'BillView';
-            break;
-          case '支付':
-            this.cview = 'BillPay';
-            break;
-        }
-        //console.dir(scope.row);
+        var info={
+          '审核':'BillCheck',
+          '查看':'BillView',
+          '支付':'BillPay'
+        };
+        this.cview = info[btn] || '';
       },
 
       getOptTitle: getTitle,
@@ -205,20 +186,26 @@
         var param = {
           "startDate": "2001-01-01",
           "endDate": "2100-01-01",
-          "type": queryinfo.type,
-          /*    'department':queryinfo.department,*/
-          'others': queryinfo.others,
-          'status': queryinfo.status,
+          "type": this.type,
+          'others': this.keyword,
+          'status': this.status,
           "pager": {
             "page": 1,
             "rows": 50
           }
         };
+
+        if(this.dept!="-1"){
+          param.department=this.dept;
+        }
+
         var that=this;
+        this.tbloading=true;
         Api.post({
           'url': 'doc/list?' + AppData.getData().author,
           'param': param,
           'fnSuccess': function (data) {
+            that.tbloading=false;
             that.tbData = Utils.connect(that.tbData, data);
           }
         });
@@ -231,25 +218,38 @@
 
     },
 
+    created:function () {
+      let that=this;
+      Api.get({
+        'url': 'departments?' + AppData.getData().author,
+        'fnSuccess': function (data) {
+          that.depts=setDepts(that.depts,data);
+        }
+      });
+    },
     mounted: function () {
       this.searchData();
     }
   }
 
+  function setDepts(depts,data) {
+    for(var i in data){
+      depts.push({
+        value:data[i],
+        label:data[i]
+      });
+    }
+    return depts;
+  }
+
   function getTitle(row) {
-
-    let btn = '';
-    if (row.statusCode == 'pass' || row.statusCode == 'submit') {
-      btn = '审核';
-    }
-    else if (row.statusCode == 'checked') {
-      btn = '支付';
-    }
-    else if (row.statusCode == 'pay') {
-      btn = '查看';
-    }
-    return btn;
-
+    var info={
+      'pass':'审核',
+      'submit':'审核',
+      'checked':'支付',
+      'pay':'查看'
+    };
+    return info[row.statusCode] || '';
   }
 
 </script>

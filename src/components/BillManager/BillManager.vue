@@ -63,7 +63,8 @@
       <el-table-column prop="payTime" label="付款时间" width="180"></el-table-column>
 
     </el-table>
-    <el-pagination style="float: right;margin-right: -5px;"
+
+    <el-pagination v-if="false" style="float: right;margin-right: -5px;"
                    layout="prev, pager, next" :total="datanum"></el-pagination>
 
     <div v-if="cview != '' " class="subview">
@@ -133,7 +134,7 @@
 
         cview: '',
         curid: '',
-        datanum: 28,
+        datanum: 0,
         tbloading: false,
 
         tbData: [],

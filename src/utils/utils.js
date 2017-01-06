@@ -4,6 +4,7 @@
 
 
 function connect(src, target) {
+  src=src || [];
   var len = target.length;
   for (let i = 0; i < len; i++) {
     src.push(target[i]);

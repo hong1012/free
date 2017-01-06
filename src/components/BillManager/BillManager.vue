@@ -12,7 +12,7 @@
       </el-select>
 
       <span>类型</span>
-      <el-select v-model="type" placeholder="请选择">
+      <el-select v-model="type" placeholder="请选择" @change="typeSelect">
         <el-option
           v-for="item in types"
           :label="item.label"
@@ -21,7 +21,7 @@
       </el-select>
 
       <span>状态</span>
-      <el-select v-model="status" placeholder="请选择">
+      <el-select v-model="status" placeholder="请选择" @change="statusSelect">
         <el-option
           v-for="item in statuss"
           :label="item.label"
@@ -33,11 +33,13 @@
                 placeholder="请输入报销人/单号" v-model="keyword">
       </el-input>
 
-      <el-button>查询</el-button>
+      <el-button @click="queryClick">查询</el-button>
       <el-button type="primary">导出</el-button>
 
     </div>
     <el-table
+      v-loading="tbloading"
+      element-loading-text="拼命加载中"
       :data="tbData"
       border
       style="width: 100%"
@@ -64,10 +66,10 @@
     <el-pagination style="float: right;margin-right: -5px;"
                    layout="prev, pager, next" :total="datanum"></el-pagination>
 
-<!--    <div v-if="cview != '' " class="subview">
-      <div :is="cview" v-on:closeSubview="closeSubview" :id="curid">
-      </div>
-    </div>-->
+    <div v-if="cview != '' " class="subview">
+      <comment :is="cview" v-on:closeSubview="closeSubview" :id="curid">
+      </comment>
+    </div>
 
 
   </div>
@@ -125,33 +127,6 @@
     'type': 0
   };
 
-  let tbData = [];
-
-
-  function getData() {
-
-    var param = {
-      "startDate": "2001-01-01",
-      "endDate": "2100-01-01",
-      "type": queryinfo.type,
-      /*    'department':queryinfo.department,*/
-      'others': queryinfo.others,
-      'status': queryinfo.status,
-      "pager": {
-        "page": 1,
-        "rows": 50
-      }
-    };
-
-
-    Api.post({
-      'url': 'doc/list?' + AppData.getData().author,
-      'param': param,
-      'fnSuccess': function (data) {
-        tbData = Utils.connect(tbData, data);
-      }
-    });
-  }
 
   export default {
     components: {
@@ -159,32 +134,47 @@
     },
     data: function () {
       return {
-
         depts: deptlist,
         dept: '',
-
         types: typelist,
         type: '0',
-
         statuss: statuslist,
         status: '',
         keyword: '',
 
         cview: '',
         curid: '',
-
         datanum: 28,
+        tbloading: false,
 
-        tbData: tbData,
+        tbData: [],
         multipleSelection: []
       }
     },
 
+
     methods: {
-      handleSelectionChange(val) {
+
+      queryClick: function () {
+        queryinfo.others = this.keyword;
+        this.searchData();
+      },
+
+      statusSelect: function (text) {
+        queryinfo.status = text;
+        this.searchData();
+      },
+
+      typeSelect: function (text) {
+        queryinfo.type = text;
+        this.searchData();
+      },
+
+      handleSelectionChange: function (val) {
         this.multipleSelection = val;
       },
-      handleClick(scope) {
+
+      handleClick: function (scope) {
         this.curid = scope.row.id;
         var btn = getTitle(scope.row);
         switch (btn) {
@@ -203,15 +193,46 @@
         }
         //console.dir(scope.row);
       },
+
       getOptTitle: getTitle,
+
       closeSubview: function (subview) {
         this.cview = subview;
+      },
+
+      getData:function() {
+
+        var param = {
+          "startDate": "2001-01-01",
+          "endDate": "2100-01-01",
+          "type": queryinfo.type,
+          /*    'department':queryinfo.department,*/
+          'others': queryinfo.others,
+          'status': queryinfo.status,
+          "pager": {
+            "page": 1,
+            "rows": 50
+          }
+        };
+        var that=this;
+        Api.post({
+          'url': 'doc/list?' + AppData.getData().author,
+          'param': param,
+          'fnSuccess': function (data) {
+            that.tbData = Utils.connect(that.tbData, data);
+          }
+        });
+      },
+
+      searchData:function() {
+        this.tbData = Utils.empty(this.tbData);
+        this.getData();
       }
+
     },
 
     mounted: function () {
-      tbData = Utils.empty(tbData);
-      getData();
+      this.searchData();
     }
   }
 

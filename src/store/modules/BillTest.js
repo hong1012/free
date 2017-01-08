@@ -56,14 +56,15 @@ const state = {
     datanum: 0,
     multipleSelection: [],
 
-    exportflag: 0
+    exportflag: 3
 
   }
 }
 
 const actions = {
   exportClick: function ({commit}, num) {
-    commit('ExportClick', 5);
+    commit('ExportClick', 11);
+
   },
   closeSubview: function ({commit}, subview) {
     commit('SetSubView', subview);
@@ -94,10 +95,10 @@ const actions = {
   },
 
   getDepts: function ({commit}) {
-    console.log('i am in getDepts');
     Api.get({
       'url': 'departments?' + AppData.getData().author,
       'fnSuccess': function (data) {
+
         commit('GetDepts', data);
       }
     });
@@ -109,7 +110,6 @@ const actions = {
 
   searchData:searchData
 }
-
 
 const mutations = {
   ExportClick (state, amount) {
@@ -151,20 +151,7 @@ const mutations = {
 }
 
 const getters = {
-      getExportflag: state => state.manager.exportflag,
-      dept:state =>state.manager.dept,
-      depts:state =>state.manager.depts,
-      keyword:state =>state.manager.keyword,
-      types:state =>state.manager.types,
-      type:state =>state.manager.type,
-      statuss:state =>state.manager.statuss,
-      status:state =>state.manager.status,
-      tbData:state =>state.manager.tbData,
-      tbloading:state =>state.manager.tbloading,
-      curid:state =>state.manager.curid,
-      cview:state =>state.manager.cview,
-      datanum:state =>state.manager.datanum,
-      multipleSelection:state =>state.manager.multipleSelection
+
 
 }
 
@@ -207,8 +194,6 @@ function setDepts(depts, data) {
       label: data[i]
     });
   }
-  debugger;
-  console.log('i am in setDepts');
   return depts;
 }
 

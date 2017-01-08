@@ -30,7 +30,7 @@
       </el-select>
 
       <el-input style='display: inline-block;width:180px;'
-                placeholder="请输入报销人/单号" :value="keyword" @change="inputChange" >
+                placeholder="请输入报销人/单号" :value="keyword" @change="inputChange">
       </el-input>
 
       <el-button @click="searchData">查询</el-button>
@@ -86,8 +86,7 @@
   import BillCheck from './BillCheck'
   import BillPay from './BillPay'
 
-  import { mapGetters,mapActions } from 'vuex'
-
+  import {mapGetters, mapActions} from 'vuex'
 
 
   export default {
@@ -95,73 +94,59 @@
       BillView, BillCheck, BillPay
     },
     data: function () {
-      return {
-
-        cview: '',
-        curid: '',
-        datanum: 0,
-        multipleSelection: []
-      }
+      return {}
     },
     computed: {
 
-      exportflag:function(){
+      exportflag: function () {
         return this.$store.getters.getExportflag;
       },
       ...mapGetters([
-        'dept','depts','keyword','types','type','statuss','status','tbData','tbloading'])
+        'dept', 'depts', 'keyword', 'types', 'type', 'statuss', 'status', 'tbData',
+        'tbloading', 'cview', 'curid', 'datanum', 'multipleSelection'])
 
-    },
+  }
+  ,
 
-    methods: {
+  methods: {
 
-      ...mapActions([
-        'inputChange','exportClick','deptSelect','getData','searchData','typeSelect','statusSelect'
-      ]),
+  ...mapActions([
+      'inputChange', 'exportClick', 'deptSelect', 'getData', 'searchData', 'typeSelect',
+      'statusSelect', 'handleClick', 'closeSubview'
+    ]),
 
 
-      handleSelectionChange: function (val) {
-        this.multipleSelection = val;
-      },
-
-      handleClick: function (scope) {
-        this.curid = scope.row.id;
-        var btn = getTitle(scope.row);
-        var info={
-          '审核':'BillCheck',
-          '查看':'BillView',
-          '支付':'BillPay'
-        };
-        this.cview = info[btn] || '';
-      },
-
-      getOptTitle: getTitle,
-
-      closeSubview: function (subview) {
-        this.cview = subview;
-      },
-
-    },
-
-    created:function () {
-      this.$store.dispatch('getDepts');
-    },
-
-    mounted: function () {
-      this.$store.dispatch('searchData');
+      handleSelectionChange
+  :
+    function (val) {
+      this.multipleSelection = val;
     }
+
+  ,
+
+
+    getOptTitle: function (row) {
+      var info = {
+        'pass': '审核',
+        'submit': '审核',
+        'checked': '支付',
+        'pay': '查看'
+      };
+      return info[row.statusCode] || '';
+    }
+  },
+
+  created:function () {
+    this.$store.dispatch('getDepts');
+  },
+
+  mounted: function () {
+    this.$store.dispatch('searchData');
   }
 
 
-  function getTitle(row) {
-    var info={
-      'pass':'审核',
-      'submit':'审核',
-      'checked':'支付',
-      'pay':'查看'
-    };
-    return info[row.statusCode] || '';
   }
+
 
 </script>
 

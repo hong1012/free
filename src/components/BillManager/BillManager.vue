@@ -3,7 +3,7 @@
     <div class="head">
 
       <span>部门</span>
-      <el-select v-model="dept" placeholder="" @change="deptSelect">
+      <el-select :value="dept" placeholder="" @input="deptSelect">
         <el-option
           v-for="item in depts"
           :label="item.label"
@@ -12,7 +12,7 @@
       </el-select>
 
       <span>类型</span>
-      <el-select v-model="type" placeholder="请选择" @change="typeSelect">
+      <el-select :value="type" placeholder="请选择" @input="typeSelect">
         <el-option
           v-for="item in types"
           :label="item.label"
@@ -21,7 +21,7 @@
       </el-select>
 
       <span>状态</span>
-      <el-select v-model="status" placeholder="请选择" @change="statusSelect">
+      <el-select :value="status" placeholder="请选择" @input="statusSelect">
         <el-option
           v-for="item in statuss"
           :label="item.label"
@@ -30,11 +30,12 @@
       </el-select>
 
       <el-input style='display: inline-block;width:180px;'
-                placeholder="请输入报销人/单号" v-model="keyword">
+                placeholder="请输入报销人/单号" :value="keyword" @change="inputChange" >
       </el-input>
 
-      <el-button @click="queryClick">查询</el-button>
-      <el-button type="primary">导出</el-button>
+      <el-button @click="searchData">查询</el-button>
+      <el-button @click="exportClick" type="primary">导出</el-button>
+      <span>{{exportflag}}<span/>
 
     </div>
     <el-table
@@ -81,40 +82,11 @@
 <script>
 
 
-  import AppData from '../../AppData'
-  import Api from '../../utils/Api'
-  import Utils from '../../utils/utils'
-
   import BillView from './BillView'
   import BillCheck from './BillCheck'
   import BillPay from './BillPay'
 
-
-  let typelist = [{
-    value: '0',
-    label: '全部'
-  }, {
-    value: '1',
-    label: '日常报销单'
-  }, {
-    value: '2',
-    label: '差旅报销单'
-  }];
-
-
-  let statuslist = [{
-    value: '',
-    label: '全部'
-  }, {
-    value: '已支付',
-    label: '已支付'
-  }, {
-    value: '待支付',
-    label: '待支付'
-  }, {
-    value: '审核中',
-    label: '审核中'
-  }];
+  import { mapGetters,mapActions } from 'vuex'
 
 
 
@@ -124,42 +96,29 @@
     },
     data: function () {
       return {
-        depts: [{value: "-1",label: '全部'}],
-        dept: '-1',
-        types: typelist,
-        type: '0',
-        statuss: statuslist,
-        status: '',
-        keyword: '',
 
         cview: '',
         curid: '',
         datanum: 0,
-        tbloading: false,
-
-        tbData: [],
         multipleSelection: []
       }
     },
+    computed: {
 
+      exportflag:function(){
+        return this.$store.getters.getExportflag;
+      },
+      ...mapGetters([
+        'dept','depts','keyword','types','type','statuss','status','tbData','tbloading'])
+
+    },
 
     methods: {
 
-      queryClick: function () {
-        this.searchData();
-      },
+      ...mapActions([
+        'inputChange','exportClick','deptSelect','getData','searchData','typeSelect','statusSelect'
+      ]),
 
-      deptSelect: function () {
-        console.log('deptSelect:'+this.dept);
-        this.searchData();
-      },
-      statusSelect: function () {
-        this.searchData();
-      },
-
-      typeSelect: function () {
-        this.searchData();
-      },
 
       handleSelectionChange: function (val) {
         this.multipleSelection = val;
@@ -182,66 +141,17 @@
         this.cview = subview;
       },
 
-      getData:function() {
-
-        var param = {
-          "startDate": "2001-01-01",
-          "endDate": "2100-01-01",
-          "type": this.type,
-          'others': this.keyword,
-          'status': this.status,
-          "pager": {
-            "page": 1,
-            "rows": 50
-          }
-        };
-
-        if(this.dept!="-1"){
-          param.department=this.dept;
-        }
-
-        var that=this;
-        this.tbloading=true;
-        Api.post({
-          'url': 'doc/list?' + AppData.getData().author,
-          'param': param,
-          'fnSuccess': function (data) {
-            that.tbloading=false;
-            that.tbData = Utils.connect(that.tbData, data);
-          }
-        });
-      },
-
-      searchData:function() {
-        this.tbData = Utils.empty(this.tbData);
-        this.getData();
-      }
-
     },
 
     created:function () {
-      let that=this;
-      Api.get({
-        'url': 'departments?' + AppData.getData().author,
-        'fnSuccess': function (data) {
-          that.depts=setDepts(that.depts,data);
-        }
-      });
+      this.$store.dispatch('getDepts');
     },
+
     mounted: function () {
-      this.searchData();
+      this.$store.dispatch('searchData');
     }
   }
 
-  function setDepts(depts,data) {
-    for(var i in data){
-      depts.push({
-        value:data[i],
-        label:data[i]
-      });
-    }
-    return depts;
-  }
 
   function getTitle(row) {
     var info={

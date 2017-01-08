@@ -7,7 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
 import App from './App'
-import AppMenu from './Menu'
+//import AppMenu from './Menu'
 import AppData from './AppData'
 
 
@@ -28,6 +28,8 @@ Vue.use(VueRouter)
 Vue.use(ElementUI)
 
 
+import store from './store/store'
+
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
@@ -47,10 +49,11 @@ const router = new VueRouter({
 function showApp() {
   new Vue({
     router,
-    template: `<AppMenu></AppMenu>`,
+    template: `<App></App>`,
     components: {
-      AppMenu
-    }
+      App
+    },
+    store:store
   }).$mount('#app')
 }
 

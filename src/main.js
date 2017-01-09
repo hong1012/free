@@ -17,6 +17,8 @@ import Hello2 from './components/Hello2.vue'
 import FreeBillManager from './components/FreeBillManager.vue'
 import CostDefine from './components/CostDefine.vue'
 import CostPay from './components/CostPay.vue'
+import Test from './components/Test.vue'
+
 import CostForm from './components/CostForm.vue'
 import FreeBillProgress from './components/FreeBillProgress.vue'
 
@@ -42,6 +44,8 @@ const router = new VueRouter({
     { path: '/costpay', component: CostPay },
     { path: '/costform', component: CostForm },
     { path: '/progress', component: FreeBillProgress },
+    { path: '/test', component: Test },
+    
     { path: '/hello', component: Hello },
     { path: '/hello2', component: Hello2 }
   ]

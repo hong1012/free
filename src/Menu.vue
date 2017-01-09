@@ -15,6 +15,8 @@
       </el-submenu>
       <el-menu-item index="2"><i class="el-icon-setting"></i>
         <router-link v-bind:style="alink" to="/define">自定义费用类型</router-link></el-menu-item>
+        <router-link v-bind:style="alink" to="/test">test</router-link></el-menu-item>
+        
     </el-menu>
   </div>
   <router-view class="content"></router-view>

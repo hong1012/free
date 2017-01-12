@@ -11,9 +11,6 @@ import App from './App'
 import AppData from './AppData'
 
 
-import Hello from './components/Hello.vue'
-import Hello2 from './components/Hello2.vue'
-
 import BillManager from './components/BillManager/BillManager.vue'
 import CostDefine from './components/CostDefine.vue'
 import CostPay from './components/CostPay.vue'
@@ -39,9 +36,7 @@ const router = new VueRouter({
     {path: '/define', component: CostDefine},
     {path: '/costpay', component: CostPay},
     {path: '/costform', component: CostForm},
-    {path: '/progress', component: BillProgress},
-    {path: '/hello', component: Hello},
-    {path: '/hello2', component: Hello2}
+    {path: '/progress', component: BillProgress}
   ]
 })
 

@@ -5,9 +5,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
 
-import manager from './modules/BillManager';
+import manager from './modules/manager';
 
-import test from './modules/BillTest';
 
 Vue.use(Vuex);
 

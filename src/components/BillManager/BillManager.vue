@@ -69,7 +69,7 @@
                    layout="prev, pager, next" :total="datanum"></el-pagination>
 
     <div v-if="cview != '' " class="subview">
-      <comment :is="cview" v-on:closeSubview="closeSubview" :id="curid">
+      <comment :is="cview" v-on:closeSubview="closeSubview" :billid="curid">
       </comment>
     </div>
 
@@ -104,8 +104,7 @@
       ...mapGetters([
         'dept', 'depts', 'keyword', 'types', 'type', 'statuss', 'status', 'tbData',
         'tbloading', 'cview', 'curid', 'datanum', 'multipleSelection'])
-
-  }
+    }
   ,
 
   methods: {

@@ -27,7 +27,7 @@
 
   import AppData from '../../AppData'
   import Api from '../../utils/Api'
-  import vStep from './Steps/Step'
+  import vStep from './BillDetail/Step'
 
   import Vue from 'vue'
   import {mapGetters, mapActions} from 'vuex'

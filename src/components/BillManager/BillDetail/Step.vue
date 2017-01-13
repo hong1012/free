@@ -6,7 +6,6 @@
         <p class="icon"></p>
         <p class="tips">{{item.fromName}}</p>
       </li>
-
     </ul>
 
 </template>
@@ -14,71 +13,13 @@
 
 <script>
 
-
-
   export default {
     props: ['data'],
     data: function () {
       return {
-        item:{
-          cname:'future'
-        }
       }
-    },
-    computed: {
-
-      //steps2:getSteps(this.data)
-
-    },
-    mounted: function () {
-      console.log('组件data挂载:'+JSON.stringify(this.data));
-    },
-    updated: function () {
-      console.log('组件data更新:'+JSON.stringify(this.data));
-    },
-
-    beforeUpdate:function () {
-      //this.data=getSteps(this.data);
-    },
-    created: function () {
-      console.log('组件data创建:'+JSON.stringify(this.data));
-
     }
-
   }
-
-  function getSteps(data){
-
-    var len=data.length;
-    for(var i=0;i<len;i++){
-      if(i==0){
-        data[i].cname='past';
-      }else{
-        data[i].cname='latest';
-      }
-
-
-    }
-    return data;
-
-  }
-
-  /*
-  *
-  *
-  *
-  {
-   "desc": null,
-   "toName": "周耀宏",
-   "toUserId": "57bc27f7e4b0b1b8f9d8b31f",
-   "action": "submit",
-   "fromName": "周耀宏",
-   "date": "2016-12-28 15:39:27",
-   "fromUserId": "57bc27f7e4b0b1b8f9d8b31f"
-   },
-  *
-  *
-  * */
 
 </script>
 
@@ -89,7 +30,7 @@
     padding: 16px 20px 60px 20px;
     border-bottom: 1px solid #e0e0e0;
   .icon-bar {
-  /*      text-align: right;*/
+   text-align: right;
   button {
     width: 90px;
     text-align: center;
